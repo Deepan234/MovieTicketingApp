@@ -1,0 +1,21 @@
+package com.movie.ticket.movieapp.mappers.mapstruct;
+
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.factory.Mappers;
+
+import com.movie.ticket.movieapp.beans.Admin;
+import com.movie.ticket.movieapp.mappers.dto.AdminDto;
+
+@Mapper(componentModel="spring")
+public interface MapperInterface {
+
+	
+	MapperInterface INSTANCE = Mappers.getMapper(MapperInterface.class);
+	
+	
+	@Mapping(source="adminId",target="adminId")
+	AdminDto adminToAdminDto(Admin admin);
+	
+	
+}
