@@ -1,9 +1,11 @@
 package com.movie.ticket.movieapp.beans;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
@@ -22,6 +24,9 @@ public class User {
 	
 	@Pattern(regexp = "^[6-9]{1}[0-9]{9}", message = "Mobile number should be a 10 digit number with first digit from 6 to 9")
 	private String phoneNumber;
+	
+	@OneToOne(cascade=CascadeType.ALL)
+	private Wallet wallet;
 
 	public User() {
 		super();
@@ -31,12 +36,14 @@ public class User {
 	public User(long userId,
 			@NotNull(message = "Name Should not Left Null") @Pattern(regexp = "^[A-Za-z ]{3,20}$", message = "Name must only be alphabets and whitespaces from 3 to 20 characters") String userName,
 			String password,
-			@Pattern(regexp = "^[6-9]{1}[0-9]{9}", message = "Mobile number should be a 10 digit number with first digit from 6 to 9") String phoneNumber) {
+			@Pattern(regexp = "^[6-9]{1}[0-9]{9}", message = "Mobile number should be a 10 digit number with first digit from 6 to 9") String phoneNumber,
+			Wallet wallet) {
 		super();
 		this.userId = userId;
 		this.userName = userName;
 		this.password = password;
 		this.phoneNumber = phoneNumber;
+		this.wallet = new Wallet();
 	}
 
 	public long getUserId() {
@@ -70,8 +77,17 @@ public class User {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
+
+	public Wallet getWallet() {
+		return wallet;
+	}
+
+	public void setWallet(Wallet wallet) {
+		this.wallet = wallet;
+	}
+    
 	
-	
+		
 	
 
 }

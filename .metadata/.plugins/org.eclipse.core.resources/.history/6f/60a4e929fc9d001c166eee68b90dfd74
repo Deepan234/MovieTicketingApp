@@ -1,0 +1,26 @@
+package com.movie.ticket.movieapp.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.movie.ticket.movieapp.beans.User;
+import com.movie.ticket.movieapp.mappers.dto.UserDto;
+import com.movie.ticket.movieapp.repository.IWalletRepo;
+
+public class WalletServiceImplementation implements IWalletService {
+	
+	@Autowired
+	IWalletRepo walletRepo;
+
+	@Override
+	public UserDto createUser(User user) {
+		// TODO Auto-generated method stub
+		
+		return null;
+	}
+
+	
+	
+	
+	
+	
+}

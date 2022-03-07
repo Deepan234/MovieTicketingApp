@@ -1,10 +1,12 @@
 package com.movie.ticket.movieapp.beans;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Theatre {
@@ -13,9 +15,9 @@ public class Theatre {
 	@GeneratedValue(strategy=GenerationType.AUTO)
     private long screenId;
     
-    private long screenName;
+    private String screenName;
     
-    @OneToOne
+    @ManyToOne(cascade=CascadeType.MERGE,fetch=FetchType.EAGER)  
     private Movie movie;
 
 	public Theatre() {
@@ -23,7 +25,7 @@ public class Theatre {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Theatre(long screenId, long screenName, Movie movie) {
+	public Theatre(long screenId, String screenName, Movie movie) {
 		super();
 		this.screenId = screenId;
 		this.screenName = screenName;
@@ -38,11 +40,11 @@ public class Theatre {
 		this.screenId = screenId;
 	}
 
-	public long getScreenName() {
+	public String getScreenName() {
 		return screenName;
 	}
 
-	public void setScreenName(long screenName) {
+	public void setScreenName(String screenName) {
 		this.screenName = screenName;
 	}
 
@@ -53,6 +55,8 @@ public class Theatre {
 	public void setMovie(Movie movie) {
 		this.movie = movie;
 	}
+
+	
     
     
     

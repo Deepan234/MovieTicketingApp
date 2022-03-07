@@ -1,0 +1,5 @@
+package com.movie.ticket.movieapp.mappers.dto;
+
+public class SeatDto {
+
+}

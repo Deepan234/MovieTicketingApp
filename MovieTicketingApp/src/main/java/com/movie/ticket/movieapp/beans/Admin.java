@@ -17,7 +17,7 @@ public class Admin {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long adminId;
 	
-	@NotNull(message="Name Should not Left Null")
+	
 	@Pattern(regexp = "^[A-Za-z ]{3,20}$", message = "Name must only be alphabets and whitespaces from 3 to 20 characters")
 	private String adminName;
 	
@@ -32,7 +32,7 @@ public class Admin {
 	}
 
 	public Admin(long adminId,
-			@NotNull(message = "Name Should not Left Null") @Pattern(regexp = "^[A-Za-z ]{3,20}$", message = "Name must only be alphabets and whitespaces from 3 to 20 characters") String adminName,
+		  @Pattern(regexp = "^[A-Za-z ]{3,20}$", message = "Name must only be alphabets and whitespaces from 3 to 20 characters") String adminName,
 			String password, Wallet wallet) {
 		super();
 		this.adminId = adminId;

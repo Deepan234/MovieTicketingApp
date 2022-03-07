@@ -1,7 +1,8 @@
 package com.movie.ticket.movieapp.beans;
 
-import java.math.BigDecimal;
+
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
+import javax.persistence.OneToMany;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -24,14 +25,8 @@ public class Ticket {
 	@ManyToOne
 	private Theatre theatre;
 	
-	@NotNull(message="seat Name should not be null")
-	private String seatName;
-	
-	@NotNull(message="seatType should not be null")
-	private String seatType;
-	
-	@NotNull(message="seatPrice should not be null")
-	private BigDecimal seatPrice;
+	@OneToMany
+	private List<Seat> seatList;
 	
 	private String showName;
 	
@@ -47,16 +42,12 @@ public class Ticket {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Ticket(long ticketId, Theatre theatre, @NotNull(message = "seat Name should not be null") String seatName,
-			@NotNull(message = "seatType should not be null") String seatType,
-			@NotNull(message = "seatPrice should not be null") BigDecimal seatPrice, String showName,
-			LocalDate showDate, String showTiming) {
+	public Ticket(long ticketId, Theatre theatre, List<Seat> seatList, String showName, LocalDate showDate,
+			String showTiming) {
 		super();
 		this.ticketId = ticketId;
 		this.theatre = theatre;
-		this.seatName = seatName;
-		this.seatType = seatType;
-		this.seatPrice = seatPrice;
+		this.seatList = seatList;
 		this.showName = showName;
 		this.showDate = showDate;
 		this.showTiming = showTiming;
@@ -78,28 +69,12 @@ public class Ticket {
 		this.theatre = theatre;
 	}
 
-	public String getSeatName() {
-		return seatName;
+	public List<Seat> getSeatList() {
+		return seatList;
 	}
 
-	public void setSeatName(String seatName) {
-		this.seatName = seatName;
-	}
-
-	public String getSeatType() {
-		return seatType;
-	}
-
-	public void setSeatType(String seatType) {
-		this.seatType = seatType;
-	}
-
-	public BigDecimal getSeatPrice() {
-		return seatPrice;
-	}
-
-	public void setSeatPrice(BigDecimal seatPrice) {
-		this.seatPrice = seatPrice;
+	public void setSeatList(List<Seat> seatList) {
+		this.seatList = seatList;
 	}
 
 	public String getShowName() {

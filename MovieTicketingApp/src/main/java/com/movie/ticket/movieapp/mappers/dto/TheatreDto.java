@@ -7,7 +7,7 @@ public class TheatreDto {
 	
 	    private long screenId;
 	    
-	    private long screenName;
+	    private String screenName;
 	    
 	    private Movie movie;
 
@@ -16,7 +16,7 @@ public class TheatreDto {
 			// TODO Auto-generated constructor stub
 		}
 
-		public TheatreDto(long screenId, long screenName, Movie movie) {
+		public TheatreDto(long screenId, String screenName, Movie movie) {
 			super();
 			this.screenId = screenId;
 			this.screenName = screenName;
@@ -31,11 +31,11 @@ public class TheatreDto {
 			this.screenId = screenId;
 		}
 
-		public long getScreenName() {
+		public String getScreenName() {
 			return screenName;
 		}
 
-		public void setScreenName(long screenName) {
+		public void setScreenName(String screenName) {
 			this.screenName = screenName;
 		}
 
@@ -46,6 +46,8 @@ public class TheatreDto {
 		public void setMovie(Movie movie) {
 			this.movie = movie;
 		}
+
+		
 	    
 	
 }

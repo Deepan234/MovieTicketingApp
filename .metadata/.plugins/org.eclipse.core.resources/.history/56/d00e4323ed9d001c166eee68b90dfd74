@@ -1,0 +1,30 @@
+package com.movie.ticket.movieapp.controller;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.movie.ticket.movieapp.beans.Admin;
+import com.movie.ticket.movieapp.mappers.dto.AdminDto;
+import com.movie.ticket.movieapp.mappers.mapstruct.MapperInterface;
+import com.movie.ticket.movieapp.service.IAdminService;
+
+@RestController
+@RequestMapping("/adminapi")
+public class AdminController {
+	
+	@Autowired
+	IAdminService adminService;
+	
+	@PostMapping("/createAdmin")
+	public ResponseEntity<AdminDto> createAdmin(AdminDto adminDto){
+		Admin admin = MapperInterface.INSTANCE.adminDtoToAdmin(adminDto);
+		AdminDto adminsDto = adminService.createAdmin(admin);
+		return new ResponseEntity<AdminDto>(adminsDto,HttpStatus.OK);
+	}
+
+}

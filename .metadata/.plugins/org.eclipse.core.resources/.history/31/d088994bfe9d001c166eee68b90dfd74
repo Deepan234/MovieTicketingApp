@@ -1,0 +1,29 @@
+package com.movie.ticket.movieapp.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.movie.ticket.movieapp.beans.User;
+import com.movie.ticket.movieapp.mappers.dto.UserDto;
+import com.movie.ticket.movieapp.mappers.mapstruct.MapperInterface;
+import com.movie.ticket.movieapp.service.IWalletService;
+
+@RestController
+@RequestMapping("/walletapi")
+public class WalletController {
+	
+	@Autowired
+    IWalletService walletService;
+
+	@PostMapping("/adduser")
+	public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto){
+		User user = MapperInterface.INSTANCE.userDtoToUser(userDto);
+		UserDto usersDto = walletService.createUser(user);
+		return new ResponseEntity<UserDto>(usersDto,HttpStatus.OK);
+	}
+}

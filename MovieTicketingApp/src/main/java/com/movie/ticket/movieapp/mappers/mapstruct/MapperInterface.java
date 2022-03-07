@@ -10,12 +10,20 @@ import com.movie.ticket.movieapp.beans.Admin;
 import com.movie.ticket.movieapp.beans.Cart;
 import com.movie.ticket.movieapp.beans.Movie;
 import com.movie.ticket.movieapp.beans.Orders;
+import com.movie.ticket.movieapp.beans.Seat;
 import com.movie.ticket.movieapp.beans.Theatre;
+import com.movie.ticket.movieapp.beans.Ticket;
+import com.movie.ticket.movieapp.beans.User;
+import com.movie.ticket.movieapp.beans.Wallet;
 import com.movie.ticket.movieapp.mappers.dto.AdminDto;
 import com.movie.ticket.movieapp.mappers.dto.CartDto;
 import com.movie.ticket.movieapp.mappers.dto.MovieDto;
 import com.movie.ticket.movieapp.mappers.dto.OrderDto;
+import com.movie.ticket.movieapp.mappers.dto.SeatDto;
 import com.movie.ticket.movieapp.mappers.dto.TheatreDto;
+import com.movie.ticket.movieapp.mappers.dto.TicketDto;
+import com.movie.ticket.movieapp.mappers.dto.UserDto;
+import com.movie.ticket.movieapp.mappers.dto.WalletDto;
 
 @Mapper(componentModel="spring")
 public interface MapperInterface {
@@ -69,5 +77,63 @@ public interface MapperInterface {
 	@Mapping(source="screenId",target="screenId")
 	TheatreDto theatreToTheatreDto(Theatre theatre);
 	
+	@Mapping(source="screenId",target="screenId")
+	Theatre theatreDtoTotheatre(TheatreDto theatreDto);
+	
+	@Mapping(source="screenId",target="screenId")
+	List<TheatreDto> theatreListToTheatreListDto(List<Theatre> theatreList);
+	
+	@Mapping(source="screenId",target="screenId")
+	List<Theatre> theatreDtoListToTheatreList(List<TheatreDto> theatreListDto);
+
+	@Mapping(source="ticketId",target="ticketId")
+	TicketDto ticketToTicketDto(Ticket ticket);
+	
+	@Mapping(source="ticketId",target="ticketId")
+	Ticket ticketDtoToTicket(TicketDto ticketDto);
+	
+	@Mapping(source="ticketId",target="ticketId")
+	List<TicketDto> ticketListtoTicketListDto(List<Ticket> ticketList);
+	
+    @Mapping(source="ticketId",target="ticketId")
+    List<Ticket> ticketListDtoToTicketList(List<TicketDto> ticketListDto);
+    
+    @Mapping(source="userId",target="userId")
+    UserDto userToUserDto(User user);
+    
+    @Mapping(source="userId",target="userId")
+    User userDtoToUser(UserDto userDto);
+    
+    @Mapping(source="userId",target="userId")
+    List<UserDto> userListToUserListDto(List<User> userList);
+    
+    @Mapping(source="userId",target="userId")
+    List<User> userListDtoToUserList(List<UserDto> userListDto);
+    
+    @Mapping(source="walletId",target="walletId")
+    WalletDto walletToWalletDto(Wallet wallet);
+    
+    @Mapping(source="walletId",target="walletId")
+    Wallet walletDtoToWallet(WalletDto walletDto);
+    
+    @Mapping(source="walletId",target="walletId")
+    List<WalletDto> walletListToWalletListDto(List<Wallet> walletList);
+    
+    @Mapping(source="walletId",target="walletId")
+    List<Wallet> walletListDtoToWalletList(List<WalletDto> walletListDto);
+    
+    @Mapping(source="seatId",target="seatId")
+    SeatDto seatToSeatDto(Seat seat);
+    
+    @Mapping(source="seatId",target="seatId")
+    Seat seatDtoToSeat(SeatDto seatDto);
+    
+    @Mapping(source="seatId",target="seatId")
+    List<SeatDto> seatListDtoToSeatList(List<Seat> seatList);
+    
+    @Mapping(source="seatId",target="seatId")
+    List<Seat> seatListToSeatListDto(List<SeatDto> seatListDto);
+    
+    
 	
 }

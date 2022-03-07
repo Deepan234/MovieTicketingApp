@@ -1,0 +1,12 @@
+package com.movie.ticket.movieapp.service;
+
+import com.movie.ticket.movieapp.beans.Admin;
+import com.movie.ticket.movieapp.mappers.dto.AdminDto;
+
+public interface IAdminService {
+
+	AdminDto createAdmin(Admin admin);
+
+	AdminDto validateLogin(Admin admin);
+
+}

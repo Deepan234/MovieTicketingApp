@@ -1,8 +1,9 @@
 package com.movie.ticket.movieapp.mappers.dto;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
+import com.movie.ticket.movieapp.beans.Seat;
 import com.movie.ticket.movieapp.beans.Theatre;
 
 public class TicketDto {
@@ -11,11 +12,7 @@ public class TicketDto {
 	
 	private Theatre theatre;
 	
-	private String seatName;
-	
-	private String seatType;
-
-	private BigDecimal seatPrice;
+	private List<Seat> seatList;
 	
 	private String showName;
 	
@@ -28,14 +25,12 @@ public class TicketDto {
 		// TODO Auto-generated constructor stub
 	}
 
-	public TicketDto(long ticketId, Theatre theatre, String seatName, String seatType, BigDecimal seatPrice,
-			String showName, LocalDate showDate, String showTiming) {
+	public TicketDto(long ticketId, Theatre theatre, List<Seat> seatList, String showName, LocalDate showDate,
+			String showTiming) {
 		super();
 		this.ticketId = ticketId;
 		this.theatre = theatre;
-		this.seatName = seatName;
-		this.seatType = seatType;
-		this.seatPrice = seatPrice;
+		this.seatList = seatList;
 		this.showName = showName;
 		this.showDate = showDate;
 		this.showTiming = showTiming;
@@ -57,28 +52,12 @@ public class TicketDto {
 		this.theatre = theatre;
 	}
 
-	public String getSeatName() {
-		return seatName;
+	public List<Seat> getSeatList() {
+		return seatList;
 	}
 
-	public void setSeatName(String seatName) {
-		this.seatName = seatName;
-	}
-
-	public String getSeatType() {
-		return seatType;
-	}
-
-	public void setSeatType(String seatType) {
-		this.seatType = seatType;
-	}
-
-	public BigDecimal getSeatPrice() {
-		return seatPrice;
-	}
-
-	public void setSeatPrice(BigDecimal seatPrice) {
-		this.seatPrice = seatPrice;
+	public void setSeatList(List<Seat> seatList) {
+		this.seatList = seatList;
 	}
 
 	public String getShowName() {
@@ -104,7 +83,7 @@ public class TicketDto {
 	public void setShowTiming(String showTiming) {
 		this.showTiming = showTiming;
 	}
-	
+
 	
 	
 	

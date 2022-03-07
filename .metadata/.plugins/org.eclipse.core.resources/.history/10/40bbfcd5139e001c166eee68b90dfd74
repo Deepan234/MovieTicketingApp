@@ -1,0 +1,5 @@
+package com.movie.ticket.movieapp.service;
+
+public interface TheatreServiceImplementation implements ITheatreService {
+
+}
