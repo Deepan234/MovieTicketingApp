@@ -1,0 +1,5 @@
+package com.movie.ticket.movieapp.repository;
+
+public interface IOrderRepo {
+
+}

@@ -2,6 +2,8 @@ package com.movie.ticket.movieapp.mappers.dto;
 
 import java.math.BigDecimal;
 
+import com.movie.ticket.movieapp.beans.SeatStatus;
+
 
 public class SeatDto {
 	
@@ -12,18 +14,21 @@ public class SeatDto {
 	private String seatType;
 	
 	private BigDecimal seatPrice;
+	
+	private SeatStatus seatStatus;
 
 	public SeatDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public SeatDto(long seatId, String seatName, String seatType, BigDecimal seatPrice) {
+	public SeatDto(long seatId, String seatName, String seatType, BigDecimal seatPrice, SeatStatus seatStatus) {
 		super();
 		this.seatId = seatId;
 		this.seatName = seatName;
 		this.seatType = seatType;
 		this.seatPrice = seatPrice;
+		this.seatStatus = seatStatus;
 	}
 
 	public long getSeatId() {
@@ -57,6 +62,15 @@ public class SeatDto {
 	public void setSeatPrice(BigDecimal seatPrice) {
 		this.seatPrice = seatPrice;
 	}
+
+	public SeatStatus getSeatStatus() {
+		return seatStatus;
+	}
+
+	public void setSeatStatus(SeatStatus seatStatus) {
+		this.seatStatus = seatStatus;
+	}
+
 	
 	
 

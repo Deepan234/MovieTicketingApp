@@ -1,5 +1,6 @@
 package com.movie.ticket.movieapp.mappers.dto;
 
+import com.movie.ticket.movieapp.beans.Cart;
 import com.movie.ticket.movieapp.beans.Wallet;
 
 public class UserDto {
@@ -12,6 +13,8 @@ public class UserDto {
 
 	private String phoneNumber;
 
+	private Cart cart;
+	
 	private Wallet wallet;
 
 	public UserDto() {
@@ -19,12 +22,13 @@ public class UserDto {
 		// TODO Auto-generated constructor stub
 	}
 
-	public UserDto(long userId, String userName, String password, String phoneNumber, Wallet wallet) {
+	public UserDto(long userId, String userName, String password, String phoneNumber, Cart cart, Wallet wallet) {
 		super();
 		this.userId = userId;
 		this.userName = userName;
 		this.password = password;
 		this.phoneNumber = phoneNumber;
+		this.cart = cart;
 		this.wallet = wallet;
 	}
 
@@ -60,6 +64,14 @@ public class UserDto {
 		this.phoneNumber = phoneNumber;
 	}
 
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+
 	public Wallet getWallet() {
 		return wallet;
 	}
@@ -67,9 +79,7 @@ public class UserDto {
 	public void setWallet(Wallet wallet) {
 		this.wallet = wallet;
 	}
-	
-	
-	
-	
+
+    
 	
 }

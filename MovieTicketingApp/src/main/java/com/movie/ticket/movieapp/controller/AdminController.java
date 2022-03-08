@@ -1,6 +1,8 @@
 package com.movie.ticket.movieapp.controller;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +19,12 @@ import com.movie.ticket.movieapp.beans.Admin;
 import com.movie.ticket.movieapp.beans.Movie;
 import com.movie.ticket.movieapp.mappers.dto.AdminDto;
 import com.movie.ticket.movieapp.mappers.dto.MovieDto;
+import com.movie.ticket.movieapp.mappers.dto.SeatDto;
+import com.movie.ticket.movieapp.mappers.dto.UserDto;
 import com.movie.ticket.movieapp.mappers.mapstruct.MapperInterface;
 import com.movie.ticket.movieapp.service.IAdminService;
+import com.movie.ticket.movieapp.service.ITicketService;
+import com.movie.ticket.movieapp.service.IWalletService;
 
 @RestController
 @RequestMapping("/adminapi")
@@ -26,6 +32,12 @@ public class AdminController {
 	
 	@Autowired
 	IAdminService adminService;
+	
+	@Autowired
+	ITicketService ticketService;
+	
+	@Autowired
+	IWalletService walletService;
 	
 	@PostMapping("/createAdmin")
 	public ResponseEntity<AdminDto> createAdmin(@RequestBody AdminDto adminDto){
@@ -69,6 +81,18 @@ public class AdminController {
    public ResponseEntity<MovieDto> getMovieById(@RequestParam long movieId ){
 	   MovieDto movieDto = adminService.getMovies(movieId);
 	   return new ResponseEntity<MovieDto>(movieDto,HttpStatus.OK);
+   }
+   
+   @GetMapping("/blockSeat")
+   public ResponseEntity<SeatDto> blockSeat(@RequestParam long seatId){
+	   SeatDto seatDto = ticketService.blockSeat(seatId);
+	   return new ResponseEntity<SeatDto>(seatDto,HttpStatus.OK);
+   }
+   
+   @GetMapping("/getUsers")
+   public ResponseEntity<List<UserDto>> getUsersList(){
+	   List<UserDto> userListing = walletService.getUsersList();
+	   return new ResponseEntity<List<UserDto>>(userListing,HttpStatus.OK);
    }
 
 }

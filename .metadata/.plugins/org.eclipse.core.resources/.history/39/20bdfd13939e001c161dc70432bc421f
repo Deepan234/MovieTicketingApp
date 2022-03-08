@@ -1,0 +1,73 @@
+package com.movie.ticket.movieapp.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.movie.ticket.movieapp.beans.Seat;
+import com.movie.ticket.movieapp.beans.SeatStatus;
+import com.movie.ticket.movieapp.beans.Ticket;
+import com.movie.ticket.movieapp.exceptions.SeatBookedExceptions;
+import com.movie.ticket.movieapp.exceptions.SeatNotFoundExceptions;
+import com.movie.ticket.movieapp.exceptions.TicketNotFoundException;
+import com.movie.ticket.movieapp.mappers.dto.SeatDto;
+import com.movie.ticket.movieapp.mappers.dto.TicketDto;
+import com.movie.ticket.movieapp.mappers.mapstruct.MapperInterface;
+import com.movie.ticket.movieapp.repository.ISeatRepo;
+import com.movie.ticket.movieapp.repository.ITicketRepo;
+
+@Service("ticketService")
+public class TicketServiceImplementation implements ITicketService{
+	
+	@Autowired
+	ITicketRepo ticketRepo;
+	
+	@Autowired
+	ISeatRepo seatRepo;
+
+	@Override
+	public TicketDto bookTicket(Ticket ticket) {
+		// TODO Auto-generated method stub
+		for(int i=0;i<ticket.getSeatList().size();i++) {
+			Seat seat = ticket.getSeatList().get(i);
+			if(seat.getSeatStatus().equals(SeatStatus.UNBOOKED)) {
+				seat.setSeatStatus(SeatStatus.BOOKED);
+			}
+			else {
+				throw new SeatBookedExceptions("Seat"+i+"is already Booked Or Blocked");
+			}
+		}
+	    Ticket tickets = ticketRepo.save(ticket);
+	    
+	    if(tickets == null) {
+	    	throw new TicketNotFoundException("No tickets Found");
+	    }
+	    System.out.println(tickets.getSeatList());
+		return MapperInterface.INSTANCE.ticketToTicketDto(tickets);
+	}
+
+	@Override
+	public SeatDto addSeats(Seat seat) {
+		// TODO Auto-generated method stub
+		Seat seats = seatRepo.save(seat);
+		if(seats == null) {
+			throw new SeatNotFoundExceptions("Seat not added");
+		}
+		return MapperInterface.INSTANCE.seatToSeatDto(seats);
+	}
+
+	@Override
+	public TicketDto getTicketbyId(long ticketId) {
+		// TODO Auto-generated method stub
+		Ticket ticket = ticketRepo.getById(ticketId);
+		if(ticket == null) {
+			throw new TicketNotFoundException("Ticket does not present in this id");
+		}
+		return MapperInterface.INSTANCE.ticketToTicketDto(ticket);
+	}
+	
+	
+
+}

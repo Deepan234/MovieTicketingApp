@@ -1,9 +1,11 @@
 package com.movie.ticket.movieapp.beans;
 
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,10 +24,10 @@ public class Ticket {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long ticketId;
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.MERGE)
 	private Theatre theatre;
 	
-	@OneToMany
+	@OneToMany(cascade=CascadeType.MERGE)
 	private List<Seat> seatList;
 	
 	private String showName;
@@ -36,6 +38,8 @@ public class Ticket {
 	private LocalDate showDate;
 	
 	private String showTiming;
+	
+	private BigDecimal totalAmount;
 
 	public Ticket() {
 		super();
@@ -43,7 +47,7 @@ public class Ticket {
 	}
 
 	public Ticket(long ticketId, Theatre theatre, List<Seat> seatList, String showName, LocalDate showDate,
-			String showTiming) {
+			String showTiming, BigDecimal totalAmount) {
 		super();
 		this.ticketId = ticketId;
 		this.theatre = theatre;
@@ -51,6 +55,7 @@ public class Ticket {
 		this.showName = showName;
 		this.showDate = showDate;
 		this.showTiming = showTiming;
+		this.totalAmount = totalAmount;
 	}
 
 	public long getTicketId() {
@@ -101,6 +106,15 @@ public class Ticket {
 		this.showTiming = showTiming;
 	}
 
+	public BigDecimal getTotalAmount() {
+		return totalAmount;
+	}
+
+	public void setTotalAmount(BigDecimal totalAmount) {
+		this.totalAmount = totalAmount;
+	}
+
+	
 	
 	
 	

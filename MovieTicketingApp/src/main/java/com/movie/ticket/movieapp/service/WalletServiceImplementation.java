@@ -1,5 +1,6 @@
 package com.movie.ticket.movieapp.service;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.movie.ticket.movieapp.beans.User;
 import com.movie.ticket.movieapp.exceptions.PasswordWrongExceptions;
+import com.movie.ticket.movieapp.exceptions.UserNotFoundException;
 import com.movie.ticket.movieapp.mappers.dto.UserDto;
 import com.movie.ticket.movieapp.mappers.mapstruct.MapperInterface;
 import com.movie.ticket.movieapp.repository.IWalletRepo;
@@ -73,6 +75,29 @@ public class WalletServiceImplementation implements IWalletService {
 	    usered.setWallet(user.getWallet());
 	    User usermain = walletRepo.save(usered);
 		return MapperInterface.INSTANCE.userToUserDto(usermain);
+	}
+
+
+
+
+	@Override
+	public UserDto profileDisplay(long userId) {
+		// TODO Auto-generated method stub
+		User user = walletRepo.getById(userId);
+		if(user == null) {
+			throw new UserNotFoundException("user not found");
+		}
+		return MapperInterface.INSTANCE.userToUserDto(user);
+	}
+
+
+
+
+	@Override
+	public List<UserDto> getUsersList() {
+		// TODO Auto-generated method stub
+		List<User> userListing = walletRepo.findAll();	
+		return MapperInterface.INSTANCE.userListToUserListDto(userListing);
 	}
 	
 	

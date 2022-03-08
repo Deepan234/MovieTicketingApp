@@ -9,7 +9,7 @@ import org.mapstruct.factory.Mappers;
 import com.movie.ticket.movieapp.beans.Admin;
 import com.movie.ticket.movieapp.beans.Cart;
 import com.movie.ticket.movieapp.beans.Movie;
-import com.movie.ticket.movieapp.beans.Orders;
+
 import com.movie.ticket.movieapp.beans.Seat;
 import com.movie.ticket.movieapp.beans.Theatre;
 import com.movie.ticket.movieapp.beans.Ticket;
@@ -18,7 +18,7 @@ import com.movie.ticket.movieapp.beans.Wallet;
 import com.movie.ticket.movieapp.mappers.dto.AdminDto;
 import com.movie.ticket.movieapp.mappers.dto.CartDto;
 import com.movie.ticket.movieapp.mappers.dto.MovieDto;
-import com.movie.ticket.movieapp.mappers.dto.OrderDto;
+
 import com.movie.ticket.movieapp.mappers.dto.SeatDto;
 import com.movie.ticket.movieapp.mappers.dto.TheatreDto;
 import com.movie.ticket.movieapp.mappers.dto.TicketDto;
@@ -62,17 +62,6 @@ public interface MapperInterface {
 	@Mapping(source="movieId",target="movieId")
 	List<Movie> movieDtoListtoMovieList(List<MovieDto> movieDtoList);
 	
-	@Mapping(source="orderId",target="orderId")
-	OrderDto orderToOrderDto(Orders order);
-	
-	@Mapping(source="orderId",target="orderId")
-	Orders orderDtoToOrders(OrderDto orderDto);
-	
-	@Mapping(source="orderId",target="orderId")
-	List<OrderDto> orderListtoOrderDtoList(List<Orders> orderList);
-	
-	@Mapping(source="orderId",target="orderId")
-	List<Orders> orderDtoListToOrdersList(List<OrderDto> orderListDto);
 	
 	@Mapping(source="screenId",target="screenId")
 	TheatreDto theatreToTheatreDto(Theatre theatre);

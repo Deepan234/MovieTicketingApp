@@ -1,5 +1,6 @@
 package com.movie.ticket.movieapp.mappers.dto;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -19,6 +20,8 @@ public class TicketDto {
 	private LocalDate showDate;
 	
 	private String showTiming;
+	
+	private BigDecimal totalAmount;
 
 	public TicketDto() {
 		super();
@@ -26,7 +29,7 @@ public class TicketDto {
 	}
 
 	public TicketDto(long ticketId, Theatre theatre, List<Seat> seatList, String showName, LocalDate showDate,
-			String showTiming) {
+			String showTiming, BigDecimal totalAmount) {
 		super();
 		this.ticketId = ticketId;
 		this.theatre = theatre;
@@ -34,6 +37,7 @@ public class TicketDto {
 		this.showName = showName;
 		this.showDate = showDate;
 		this.showTiming = showTiming;
+		this.totalAmount = totalAmount;
 	}
 
 	public long getTicketId() {
@@ -82,6 +86,14 @@ public class TicketDto {
 
 	public void setShowTiming(String showTiming) {
 		this.showTiming = showTiming;
+	}
+
+	public BigDecimal getTotalAmount() {
+		return totalAmount;
+	}
+
+	public void setTotalAmount(BigDecimal totalAmount) {
+		this.totalAmount = totalAmount;
 	}
 
 	
