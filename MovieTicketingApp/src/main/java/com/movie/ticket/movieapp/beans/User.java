@@ -46,8 +46,8 @@ public class User {
 		this.userName = userName;
 		this.password = password;
 		this.phoneNumber = phoneNumber;
-		this.cart = cart;
-		this.wallet = wallet;
+		this.cart = new Cart();
+		this.wallet = new Wallet();
 	}
 
 	public long getUserId() {
