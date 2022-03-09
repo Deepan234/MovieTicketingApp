@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.movie.ticket.movieapp.beans.Theatre;
+import com.movie.ticket.movieapp.mappers.dto.MovieDto;
 import com.movie.ticket.movieapp.mappers.dto.TheatreDto;
 import com.movie.ticket.movieapp.mappers.mapstruct.MapperInterface;
 import com.movie.ticket.movieapp.repository.ITheatreRepo;
@@ -46,5 +47,17 @@ public class TheatreController {
 		TheatreDto theatre = theatreService.getScreenById(screenId);
 		return new ResponseEntity<TheatreDto>(theatre,HttpStatus.OK);
 	}
+	
+	@GetMapping("/getAllMovies")
+	public ResponseEntity<List<MovieDto>> getAllMovies(){
+	   List<MovieDto> movieList	= theatreService.getAllMovies();
+	   return new ResponseEntity<List<MovieDto>>(movieList,HttpStatus.OK);
+	}
 
+	
+	@GetMapping("/getAllScreenwithgivenId")
+	public ResponseEntity<List<TheatreDto>> getAllTheatresbyGivenMovieId(@RequestParam long movieId){
+		List<TheatreDto> screenList = theatreService.getAllScreenforMovieId(movieId);
+		return new ResponseEntity<List<TheatreDto>>(screenList,HttpStatus.OK);
+	}
 }

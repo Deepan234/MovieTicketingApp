@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.movie.ticket.movieapp.beans.Movie;
 import com.movie.ticket.movieapp.beans.Theatre;
 import com.movie.ticket.movieapp.exceptions.TheatreNotFoundException;
+import com.movie.ticket.movieapp.mappers.dto.MovieDto;
 import com.movie.ticket.movieapp.mappers.dto.TheatreDto;
 import com.movie.ticket.movieapp.mappers.mapstruct.MapperInterface;
 import com.movie.ticket.movieapp.repository.IMovieRepo;
@@ -48,6 +49,21 @@ public class TheatreServiceImplementation implements ITheatreService {
 			throw new TheatreNotFoundException("theatre not found");
 		}
 		return MapperInterface.INSTANCE.theatreToTheatreDto(theatre);
+	}
+
+	@Override
+	public List<MovieDto> getAllMovies() {
+		// TODO Auto-generated method stub
+		List<Movie> movieList = movieRepo.findAll();
+		return MapperInterface.INSTANCE.movieListtoMovieDtoList(movieList);
+	}
+
+	@Override
+	public List<TheatreDto> getAllScreenforMovieId(long movieId) {
+		// TODO Auto-generated method stub
+		List<Theatre> screenList = theatreRepo.findAll();
+		List<Theatre> screenListAltered = screenList.stream().filter(theatre -> theatre.getMovie().getMovieId() == movieId).toList();
+		return MapperInterface.INSTANCE.theatreListToTheatreListDto(screenListAltered);
 	}
 	
 	
