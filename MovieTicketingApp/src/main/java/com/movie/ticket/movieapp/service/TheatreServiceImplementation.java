@@ -58,13 +58,12 @@ public class TheatreServiceImplementation implements ITheatreService {
 		return MapperInterface.INSTANCE.movieListtoMovieDtoList(movieList);
 	}
 
-	@Override
-	public List<TheatreDto> getAllScreenforMovieId(long movieId) {
-		// TODO Auto-generated method stub
-		List<Theatre> screenList = theatreRepo.findAll();
-		List<Theatre> screenListAltered = screenList.stream().filter(theatre -> theatre.getMovie().getMovieId() == movieId).toList();
-		return MapperInterface.INSTANCE.theatreListToTheatreListDto(screenListAltered);
-	}
-	
+//	public List<TheatreDto> getAllScreenforMovieId(long movieId) {
+//		// TODO Auto-generated method stub
+//		List<Theatre> screenList = theatreRepo.findAll();
+//		List<Theatre> screenListAltered = screenList.stream().filter(theatre -> theatre.getMovie().getMovieId() == movieId).toList();
+//		return MapperInterface.INSTANCE.theatreListToTheatreListDto(screenListAltered);
+//	}
+//	
 	
 }

@@ -16,6 +16,6 @@ public interface ITheatreService {
 
 	List<MovieDto> getAllMovies();
 
-	List<TheatreDto> getAllScreenforMovieId(long movieId);
+//	List<TheatreDto> getAllScreenforMovieId(long movieId);
 
 }

@@ -55,9 +55,9 @@ public class TheatreController {
 	}
 
 	
-	@GetMapping("/getAllScreenwithgivenId")
-	public ResponseEntity<List<TheatreDto>> getAllTheatresbyGivenMovieId(@RequestParam long movieId){
-		List<TheatreDto> screenList = theatreService.getAllScreenforMovieId(movieId);
-		return new ResponseEntity<List<TheatreDto>>(screenList,HttpStatus.OK);
-	}
+//	@GetMapping("/getAllScreenwithgivenId")
+//	public ResponseEntity<List<TheatreDto>> getAllTheatresbyGivenMovieId(@RequestParam long movieId){
+//		List<TheatreDto> screenList = theatreService.getAllScreenforMovieId(movieId);
+//		return new ResponseEntity<List<TheatreDto>>(screenList,HttpStatus.OK);
+//	}
 }
